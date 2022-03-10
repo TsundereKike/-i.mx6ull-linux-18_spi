@@ -9,11 +9,11 @@ void gpio_init(GPIO_Type *base, int pin, gpio_pin_config_t *config)
     else
     {
         base->GDIR |= (1<<pin);
-        gpio_pin_wirte(base, pin, config->outputLogic);
+        gpio_pin_write(base, pin, config->outputLogic);
     }
     gpio_int_config(base, pin, config->int_mode);
 }
-void gpio_pin_wirte(GPIO_Type *base, int pin, int value)
+void gpio_pin_write(GPIO_Type *base, int pin, int value)
 {
     if(value==0U)
     {

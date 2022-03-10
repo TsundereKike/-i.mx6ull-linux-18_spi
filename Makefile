@@ -1,5 +1,5 @@
 CROSS_COPILE ?= arm-linux-gnueabihf-
-TARGET 		 ?= i2c
+TARGET 		 ?= spi
 
 CC			 := $(CROSS_COPILE)gcc
 LD			 := $(CROSS_COPILE)ld
@@ -23,6 +23,8 @@ INCUDIRS	:= imx6u \
 			   bsp/rtc \
 			   bsp/i2c \
 			   bsp/ap3216c \
+			   bsp/spi \
+			   bsp/icm20608 \
 			   stdio/include
 
 SRCDIRS		:= project \
@@ -40,6 +42,8 @@ SRCDIRS		:= project \
 			   bsp/rtc \
 			   bsp/i2c \
 			   bsp/ap3216c \
+			   bsp/spi \
+			   bsp/icm20608 \
 			   stdio/lib
 
 INCLUDE		:= $(patsubst %, -I %, $(INCUDIRS))

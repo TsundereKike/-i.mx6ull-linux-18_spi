@@ -14,10 +14,10 @@ void beep_switch(int beep_status)
 {
     if(beep_status==ON)
     {
-        gpio_pin_wirte(GPIO5, 1, 0);
+        gpio_pin_write(GPIO5, 1, 0);
     }
     else if(beep_status==OFF)
     {
-        gpio_pin_wirte(GPIO5, 1 , 1);
+        gpio_pin_write(GPIO5, 1 , 1);
     }
 }

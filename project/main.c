@@ -14,6 +14,8 @@
 #include "bsp_rtc.h"
 #include "bsp_i2c.h"
 #include "bsp_ap3216c.h"
+#include "bsp_spi.h"
+#include "bsp_icm20608.h"
 unsigned char led_state = OFF;
 char buf[160];
 rtc_date_time_t rtcdate;
@@ -33,8 +35,9 @@ int main(void)
     epit1_init(0,66000000/100);/*初始化定时器1,1分频66MHz,定时时间为10ms,用于按键消抖*/
     lcd_init();
     rtc_init();
+    icm20608_init();
 
-    lcd_show_string(10,10,360,32,32,"this tmh's i2c test");
+    lcd_show_string(10,10,360,32,32,"this tmh's spi test");
     memset(buf,0,sizeof(buf));
     
     while(ap3216_init())
@@ -57,7 +60,14 @@ int main(void)
 
         led_state = !led_state;
         led_switch(LED0,led_state);
-        delay_ms(500);
+        icm20608_get_data();
+        printf("accx=%d\r\n",icm20608_imu_data.accel_x_adc);
+        printf("accy=%d\r\n",icm20608_imu_data.accel_y_adc);
+        printf("accz=%d\r\n",icm20608_imu_data.accel_z_adc);
+        printf("gyrx=%d\r\n",icm20608_imu_data.gyro_x_adc);
+        printf("gyry=%d\r\n",icm20608_imu_data.gyro_y_adc);
+        printf("gyrz=%d\r\n",icm20608_imu_data.gyro_z_adc);
+        delay_ms(100);
     }
     return 0;
 }

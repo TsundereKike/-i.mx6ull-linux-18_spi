@@ -18,6 +18,8 @@
                 "${workspaceFolder}/bsp/rtc",
                 "${workspaceFolder}/bsp/i2c",
                 "${workspaceFolder}/bsp/ap3216c",
+                "${workspaceFolder}/bsp/spi",
+                "${workspaceFolder}/bsp/icm20608",                
                 "${workspaceFolder}/imx6u",
                 "${workspaceFolder}/project",
                 "${workspaceFolder}/stdio/include"

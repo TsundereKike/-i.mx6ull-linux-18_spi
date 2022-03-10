@@ -71,4 +71,8 @@ void imx6u_clk_init(void)
     CCM->CCSR &= ~(1<<0);         /*设置pll3_sw_clk = PLL3 = 480MHz*/
     CCM->CSCDR1 &= ~(1<<6);       /*设置UART_CLK_ROOT时钟源选择为pll3_sw_clk/6 = 80MHz*/
     CCM->CSCDR1 &= ~(0x3f<<0);    /*设置pll3_sw_clk/6的时钟1分频，则UART_CLK_ROOT = 80MHz*/
+
+    /*设置ECSPI_CLK_ROOT为6MHz*/
+    CCM->CSCDR2 &= ~(1<<18);      /*设置ECSPI_CLK_ROOT时钟源来源于PLL3_60MHz*/
+    CCM->CSCDR2 &= ~(0x3f<<19);   /*设置ECSPI_CLK_ROOT = PLL3_60MHz/1 = 60MHz*/
 }

@@ -28,7 +28,7 @@ typedef struct _gpio_pin_config
     uint8_t outputLogic;
 }gpio_pin_config_t;
 void gpio_init(GPIO_Type *base, int pin, gpio_pin_config_t *config);
-void gpio_pin_wirte(GPIO_Type *base, int pin, int value);
+void gpio_pin_write(GPIO_Type *base, int pin, int value);
 int gpio_pin_read(GPIO_Type *base, int pin);
 void gpio_enable_int(GPIO_Type *base, unsigned int pin);
 void gpio_disable_int(GPIO_Type *base, unsigned int pin);
