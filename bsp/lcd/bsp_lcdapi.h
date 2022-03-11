@@ -23,6 +23,7 @@ void lcd_shownum(unsigned short x, unsigned short y, unsigned int num, unsigned 
 void lcd_showxnum(unsigned short x, unsigned short y, unsigned int num, unsigned char len, unsigned char size, unsigned char mode);
 void lcd_show_string(unsigned short x,unsigned short y,
 unsigned short width, unsigned short height, unsigned char size,char *p);
-
+void integer_display(unsigned short x, unsigned short y, unsigned char size, signed int num);
+void decimals_display(unsigned short x, unsigned short y, unsigned char size, signed int num);
 #endif
 

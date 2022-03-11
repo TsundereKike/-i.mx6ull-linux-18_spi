@@ -104,4 +104,11 @@ void icm20608_get_data(void)
     icm20608_imu_data.gyro_x_adc = (int16_t)(data[8]<<8 | data[9]);
     icm20608_imu_data.gyro_y_adc = (int16_t)(data[10]<<8 | data[11]);
     icm20608_imu_data.gyro_z_adc = (int16_t)(data[12]<<8 | data[13]);
+
+    icm20608_imu_data.accel_x_act = ((float)icm20608_imu_data.accel_x_adc / 2048.f) * 100;
+    icm20608_imu_data.accel_y_act = ((float)icm20608_imu_data.accel_y_adc / 2048.f) * 100;
+    icm20608_imu_data.accel_z_act = ((float)icm20608_imu_data.accel_z_adc / 2048.f) * 100;
+    icm20608_imu_data.gyro_x_act = ((float)icm20608_imu_data.gyro_x_adc / 16.38f) * 100;
+    icm20608_imu_data.gyro_y_act = ((float)icm20608_imu_data.gyro_y_adc / 16.38f) * 100;
+    icm20608_imu_data.gyro_z_act = ((float)icm20608_imu_data.gyro_z_adc/16.38f) * 100;
 }

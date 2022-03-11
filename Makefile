@@ -25,6 +25,7 @@ INCUDIRS	:= imx6u \
 			   bsp/ap3216c \
 			   bsp/spi \
 			   bsp/icm20608 \
+			   bsp/fpu \
 			   stdio/include
 
 SRCDIRS		:= project \
@@ -44,6 +45,7 @@ SRCDIRS		:= project \
 			   bsp/ap3216c \
 			   bsp/spi \
 			   bsp/icm20608 \
+			   bsp/fpu \
 			   stdio/lib
 
 INCLUDE		:= $(patsubst %, -I %, $(INCUDIRS))
@@ -72,7 +74,7 @@ $(SOBJS) : obj/%.o : %.S
 	$(CC) -Wall -nostdlib -fno-builtin -c -O2 $(INCLUDE) -o $@ $<
 
 $(COBJS) : obj/%.o : %.c
-	$(CC) -Wall -Wa,-mimplicit-it=thumb -nostdlib -fno-builtin -c -O2 $(INCLUDE) -o $@ $<
+	$(CC) -Wall -march=armv7-a -mfpu=neon-vfpv4 -mfloat-abi=hard -Wa,-mimplicit-it=thumb -nostdlib -fno-builtin -c -O2 $(INCLUDE) -o $@ $<
 
 clean:
 	rm -rf *.bin *.elf *.dis $(OBJS)

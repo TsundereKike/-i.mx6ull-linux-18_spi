@@ -10,7 +10,7 @@ Copyright © zuozhongkai Co., Ltd. 1998-2019. All rights reserved.
 ***************************************************************/
 #include "bsp_lcdapi.h"
 #include "font.h" 
-
+#include "stdio.h"
 /*
  * @description		: 画线函数
  * @param - x1		: 线起始点坐标X轴
@@ -270,5 +270,55 @@ void lcd_show_string(unsigned short x,unsigned short y,
         p++;
     }  
 }
+/*
+ * @description	: 指定的位置显示整数数据
+ * @param - x	: X轴位置
+ * @param - y 	: Y轴位置
+ * @param - size: 字体大小
+ * @param - num : 要显示的数据
+ * @return 		: 无
+ */
+void integer_display(unsigned short x, unsigned short y, unsigned char size, signed int num)
+{
+	char buf[200];
+	
+	lcd_fill(x, y, x + 50, y + size, lcd_tft_dev.backcolor);
+	
+	memset(buf, 0, sizeof(buf));
+	if(num < 0)
+		sprintf(buf, "-%d", -num);
+	else 
+		sprintf(buf, "%d", num);
+	lcd_show_string(x, y, 50, size, size, buf); 
+}
 
+
+/*
+ * @description	: 指定的位置显示小数数据,比如5123，显示为51.23
+ * @param - x	: X轴位置
+ * @param - y 	: Y轴位置
+ * @param - size: 字体大小
+ * @param - num : 要显示的数据，实际小数扩大100倍，
+ * @return 		: 无
+ */
+void decimals_display(unsigned short x, unsigned short y, unsigned char size, signed int num)
+{
+	signed int integ; 	/* 整数部分 */
+	signed int fract;	/* 小数部分 */
+	signed int uncomptemp = num; 
+	char buf[200];
+
+	if(num < 0)
+		uncomptemp = -uncomptemp;
+	integ = uncomptemp / 100;
+	fract = uncomptemp % 100;
+
+	memset(buf, 0, sizeof(buf));
+	if(num < 0)
+		sprintf(buf, "-%d.%d", integ, fract);
+	else 
+		sprintf(buf, "%d.%d", integ, fract);
+	lcd_fill(x, y, x + 60, y + size, lcd_tft_dev.backcolor);
+	lcd_show_string(x, y, 60, size, size, buf); 
+}
 
